@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center; /* Changer de space-between à center */
     height: 100vh;
     margin: 0;
     background-color: #000;
@@ -59,11 +59,11 @@ canvas {
 }
 
 #startButton {
-    margin-top: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute; /* Position absolue pour placer au-dessus de la zone de jeu */
+    top: 50%; /* Centré verticalement */
+    left: 50%; /* Centré horizontalement */
+    transform: translate(-50%, -50%); /* Pour centrer précisément */
+    z-index: 1000; /* Assurez-vous qu'il soit au-dessus de tout le reste */
 }
 
 #fullscreenButton {
