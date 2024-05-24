@@ -323,10 +323,7 @@ catImg.onload = function() {
 
 // Créer les boutons de contrôle
 const controlContainer = document.createElement('div');
-controlContainer.style.display = 'flex';
-controlContainer.style.flexDirection = 'column';
-controlContainer.style.alignItems = 'center';
-controlContainer.style.marginTop = '20px';
+controlContainer.className = 'control-container';
 
 const controlUp = createControlButton('control-up', '↑', () => { nextDirection = { dx: 0, dy: -1 }; });
 const controlLeft = createControlButton('control-left', '←', () => { nextDirection = { dx: -1, dy: 0 }; });
@@ -334,8 +331,7 @@ const controlDown = createControlButton('control-down', '↓', () => { nextDirec
 const controlRight = createControlButton('control-right', '→', () => { nextDirection = { dx: 1, dy: 0 }; });
 
 const controlRow = document.createElement('div');
-controlRow.style.display = 'flex';
-controlRow.style.justifyContent = 'center';
+controlRow.className = 'control-row';
 
 controlRow.appendChild(controlLeft);
 controlRow.appendChild(controlDown);
@@ -348,6 +344,7 @@ document.body.appendChild(controlContainer);
 
 // Plein écran
 const fullscreenButton = document.createElement('button');
+fullscreenButton.id = 'fullscreenButton';
 fullscreenButton.innerText = 'Plein écran';
 fullscreenButton.className = 'control-button small-font'; // Ajout d'une classe pour le style
 fullscreenButton.addEventListener('click', toggleFullScreen);
