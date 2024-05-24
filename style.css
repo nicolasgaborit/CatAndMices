@@ -9,6 +9,7 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     overflow: hidden; /* Empêche le défilement */
+    position: relative;
 }
 
 #game-info {
@@ -59,6 +60,10 @@ canvas {
 
 #startButton {
     margin-top: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #fullscreenButton {
