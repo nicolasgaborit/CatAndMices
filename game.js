@@ -24,7 +24,7 @@ let nextDirection = null;
 const catImg = new Image();
 catImg.src = 'cat.png';
 const mouseImg = new Image();
-catImg.src = 'mouse.png';
+mouseImg.src = 'mouse.png';
 
 const cat = {
     x: tileSize * 1,
@@ -291,6 +291,10 @@ function endGame() {
     const restartButton = document.createElement('button');
     restartButton.textContent = 'Recommencer';
     restartButton.className = 'control-button large-font';
+    restartButton.style.position = 'absolute';
+    restartButton.style.top = '50%';
+    restartButton.style.left = '50%';
+    restartButton.style.transform = 'translate(-50%, -50%)';
     restartButton.onclick = restartGame;
     document.body.appendChild(restartButton);
 }
