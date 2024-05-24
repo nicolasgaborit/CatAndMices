@@ -266,7 +266,7 @@ function generateMaze(rows, cols) {
 }
 
 function shuffleArray(array) {
-    for (let i = array.length - 1); i > 0; i--) {
+    for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
@@ -288,15 +288,7 @@ function endGame() {
     clearInterval(countdownInterval);
     document.getElementById('score').textContent = 'Fin du jeu ! Score : ' + score;
     document.getElementById('time').textContent = '';
-    const restartButton = document.createElement('button');
-    restartButton.textContent = 'Recommencer';
-    restartButton.className = 'control-button large-font';
-    restartButton.style.position = 'absolute';
-    restartButton.style.top = '50%';
-    restartButton.style.left = '50%';
-    restartButton.style.transform = 'translate(-50%, -50%)';
-    restartButton.onclick = restartGame;
-    document.body.appendChild(restartButton);
+    document.getElementById('restartButton').style.display = 'block';
 }
 
 function restartGame() {
@@ -309,21 +301,26 @@ function restartGame() {
     cat.dx = 0;
     cat.dy = 0;
     nextDirection = null;
-    document.body.removeChild(document.querySelector('button.large-font'));
-    startGame();
-}
-
-function startGame() {
-    document.getElementById('startButton').style.display = 'none';
+    document.getElementById('restartButton').style.display = 'none';
     gameInterval = requestAnimationFrame(gameLoop);
     startCountdown();
 }
 
-catImg.onload = function() {
-    mouseImg.onload = function() {
-        document.getElementById('startButton').style.display = 'block';
-    };
-};
+function startGame() {
+    document.getElementById('startButton').style.display = 'none';
+    document.getElementById('restartButton').style.display = 'none';
+    score = 0;
+    timeRemaining = 120;
+    maze = generateMaze(rows, cols);
+    mice = initializeMice();
+    cat.x = tileSize * 1;
+    cat.y = tileSize * 1;
+    cat.dx = 0;
+    cat.dy = 0;
+    nextDirection = null;
+    gameInterval = requestAnimationFrame(gameLoop);
+    startCountdown();
+}
 
 // Créer les boutons de contrôle
 const controlContainer = document.createElement('div');
@@ -344,14 +341,14 @@ controlRow.appendChild(controlRight);
 controlContainer.appendChild(controlUp);
 controlContainer.appendChild(controlRow);
 
-document.body.appendChild(controlContainer);
+document.getElementById('controls').appendChild(controlContainer);
 
 // Plein écran
 const fullscreenButton = document.createElement('button');
 fullscreenButton.id = 'fullscreenButton';
 fullscreenButton.innerText = 'Plein écran';
-fullscreenButton.className = 'control-button small-font'; // Ajout d'une classe pour le style
-fullscreenButton.style.marginBottom = '20px'; // Ajouter une marge en bas
+fullscreenButton.className = 'control-button small-font';
+fullscreenButton.style.marginBottom = '20px';
 fullscreenButton.addEventListener('click', toggleFullScreen);
 document.body.appendChild(fullscreenButton);
 
@@ -371,22 +368,20 @@ function toggleFullScreen() {
     }
 }
 
-// Bouton de démarrage
-const startButton = document.createElement('button');
-startButton.id = 'startButton';
-startButton.innerText = 'Démarrer le jeu';
-startButton.className = 'control-button large-font';
-startButton.style.display = 'none';
-startButton.style.position = 'absolute';
-startButton.style.top = '50%';
-startButton.style.left = '50%';
-startButton.style.transform = 'translate(-50%, -50%)';
-startButton.addEventListener('click', startGame);
-document.body.appendChild(startButton);
-
 // Auto Fullscreen on Scroll for Safari on iPhone
 window.addEventListener('scroll', function() {
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.navigator.standalone) {
         toggleFullScreen();
     }
 });
+
+// Afficher le bouton de démarrage une fois les images chargées
+catImg.onload = function() {
+    mouseImg.onload = function() {
+        document.getElementById('startButton').style.display = 'block';
+    };
+};
+
+// Ajouter les événements pour les boutons
+document.getElementById('startButton').addEventListener('click', startGame);
+document.getElementById('restartButton').addEventListener('click', restartGame);
