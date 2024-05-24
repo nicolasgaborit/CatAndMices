@@ -24,7 +24,7 @@ let nextDirection = null;
 const catImg = new Image();
 catImg.src = 'cat.png';
 const mouseImg = new Image();
-mouseImg.src = 'mouse.png';
+catImg.src = 'mouse.png';
 
 const cat = {
     x: tileSize * 1,
@@ -266,7 +266,7 @@ function generateMaze(rows, cols) {
 }
 
 function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
+    for (let i = array.length - 1); i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
@@ -290,7 +290,7 @@ function endGame() {
     document.getElementById('time').textContent = '';
     const restartButton = document.createElement('button');
     restartButton.textContent = 'Recommencer';
-    restartButton.className = 'control-button';
+    restartButton.className = 'control-button large-font';
     restartButton.onclick = restartGame;
     document.body.appendChild(restartButton);
 }
@@ -305,7 +305,7 @@ function restartGame() {
     cat.dx = 0;
     cat.dy = 0;
     nextDirection = null;
-    document.body.removeChild(document.querySelector('button.control-button'));
+    document.body.removeChild(document.querySelector('button.large-font'));
     startGame();
 }
 
@@ -373,6 +373,10 @@ startButton.id = 'startButton';
 startButton.innerText = 'Démarrer le jeu';
 startButton.className = 'control-button large-font';
 startButton.style.display = 'none';
+startButton.style.position = 'absolute';
+startButton.style.top = '50%';
+startButton.style.left = '50%';
+startButton.style.transform = 'translate(-50%, -50%)';
 startButton.addEventListener('click', startGame);
 document.body.appendChild(startButton);
 
