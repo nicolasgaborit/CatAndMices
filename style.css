@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100vh;
     margin: 0;
     background-color: #000;
@@ -26,7 +26,7 @@ canvas {
 }
 
 .control-button {
-    width: 100px;
+    width: 60px;
     height: 60px;
     font-size: 18px; /* Réduire la taille du texte */
     margin: 5px;
@@ -35,4 +35,26 @@ canvas {
 
 .control-button.small-font {
     font-size: 14px; /* Réduire encore plus pour le bouton plein écran */
+}
+
+.control-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.control-row {
+    display: flex;
+    justify-content: center;
+}
+
+#startButton {
+    margin-bottom: 20px;
+}
+
+#fullscreenButton {
+    margin-bottom: 20px;
 }
