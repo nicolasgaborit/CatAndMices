@@ -26,9 +26,13 @@ canvas {
 }
 
 .control-button {
-    width: 60px;
+    width: 100px;
     height: 60px;
-    font-size: 24px;
+    font-size: 18px; /* Réduire la taille du texte */
     margin: 5px;
     text-align: center;
+}
+
+.control-button.small-font {
+    font-size: 14px; /* Réduire encore plus pour le bouton plein écran */
 }
