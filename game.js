@@ -286,9 +286,11 @@ function startCountdown() {
 function endGame() {
     clearInterval(gameInterval);
     clearInterval(countdownInterval);
-    alert('Fin du jeu ! Votre score : ' + score);
+    document.getElementById('score').textContent = 'Fin du jeu ! Score : ' + score;
+    document.getElementById('time').textContent = '';
     const restartButton = document.createElement('button');
     restartButton.textContent = 'Recommencer';
+    restartButton.className = 'control-button';
     restartButton.onclick = restartGame;
     document.body.appendChild(restartButton);
 }
@@ -303,18 +305,19 @@ function restartGame() {
     cat.dx = 0;
     cat.dy = 0;
     nextDirection = null;
-    document.body.removeChild(document.querySelector('button'));
+    document.body.removeChild(document.querySelector('button.control-button'));
     startGame();
 }
 
 function startGame() {
+    document.getElementById('startButton').remove();
     gameInterval = requestAnimationFrame(gameLoop);
     startCountdown();
 }
 
 catImg.onload = function() {
     mouseImg.onload = function() {
-        startGame();
+        document.getElementById('startButton').style.display = 'block';
     };
 };
 
@@ -346,7 +349,7 @@ document.body.appendChild(controlContainer);
 // Plein écran
 const fullscreenButton = document.createElement('button');
 fullscreenButton.innerText = 'Plein écran';
-fullscreenButton.className = 'control-button';
+fullscreenButton.className = 'control-button small-font'; // Ajout d'une classe pour le style
 fullscreenButton.addEventListener('click', toggleFullScreen);
 document.body.appendChild(fullscreenButton);
 
@@ -365,3 +368,12 @@ function toggleFullScreen() {
         }
     }
 }
+
+// Bouton de démarrage
+const startButton = document.createElement('button');
+startButton.id = 'startButton';
+startButton.innerText = 'Démarrer le jeu';
+startButton.className = 'control-button';
+startButton.style.display = 'none';
+startButton.addEventListener('click', startGame);
+document.body.appendChild(startButton);
