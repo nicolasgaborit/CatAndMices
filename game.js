@@ -310,7 +310,7 @@ function restartGame() {
 }
 
 function startGame() {
-    document.getElementById('startButton').remove();
+    document.getElementById('startButton').style.display = 'none';
     gameInterval = requestAnimationFrame(gameLoop);
     startCountdown();
 }
@@ -347,6 +347,7 @@ const fullscreenButton = document.createElement('button');
 fullscreenButton.id = 'fullscreenButton';
 fullscreenButton.innerText = 'Plein écran';
 fullscreenButton.className = 'control-button small-font'; // Ajout d'une classe pour le style
+fullscreenButton.style.marginBottom = '20px'; // Ajouter une marge en bas
 fullscreenButton.addEventListener('click', toggleFullScreen);
 document.body.appendChild(fullscreenButton);
 
@@ -370,7 +371,14 @@ function toggleFullScreen() {
 const startButton = document.createElement('button');
 startButton.id = 'startButton';
 startButton.innerText = 'Démarrer le jeu';
-startButton.className = 'control-button';
+startButton.className = 'control-button large-font';
 startButton.style.display = 'none';
 startButton.addEventListener('click', startGame);
 document.body.appendChild(startButton);
+
+// Auto Fullscreen on Scroll for Safari on iPhone
+window.addEventListener('scroll', function() {
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.navigator.standalone) {
+        toggleFullScreen();
+    }
+});
