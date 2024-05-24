@@ -37,6 +37,12 @@ canvas {
     font-size: 14px; /* Réduire encore plus pour le bouton plein écran */
 }
 
+.control-button.large-font {
+    width: 150px; /* Agrandir le bouton */
+    height: 70px;
+    font-size: 20px; /* Agrandir le texte */
+}
+
 .control-container {
     display: flex;
     flex-direction: column;
@@ -52,7 +58,7 @@ canvas {
 }
 
 #startButton {
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 #fullscreenButton {
